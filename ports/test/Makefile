@@ -6,7 +6,7 @@ EXE_FILE = $(PLATFORM_DIR)/anarch
 
 CC = gcc
 
-C_FLAGS =\
+CFLAGS =\
  -I.\
  -I$(PLATFORM_DIR)\
  -std=c99\
@@ -21,7 +21,7 @@ C_FILES	= $(wildcard $(PLATFORM_DIR)/*.c)
 all: $(EXE_FILE)
 
 $(EXE_FILE):
-	$(CC) $(C_FLAGS) $(C_FILES) -o $@
+	$(CC) $(CFLAGS) $(C_FILES) -o $@
 
 clean:
 	rm $(EXE_FILE)
