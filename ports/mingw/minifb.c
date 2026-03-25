@@ -121,9 +121,11 @@ int mfb_open(const char * title, int width, int height, int scale)
     s_bitmapInfo->bmiHeader.biWidth = width;
     s_bitmapInfo->bmiHeader.biHeight = -height;
 
-    ((DWORD *)s_bitmapInfo->bmiColors)[0] = 0x001F; // R
+    // Set RGB565 bitmasks
+    ((DWORD *)s_bitmapInfo->bmiColors)[0] = 0xF800; // R
     ((DWORD *)s_bitmapInfo->bmiColors)[1] = 0x07E0; // G
-    ((DWORD *)s_bitmapInfo->bmiColors)[2] = 0xF800; // B
+    ((DWORD *)s_bitmapInfo->bmiColors)[2] = 0x001F; // B
+
     s_hdc = GetDC(s_wnd);
 
     return 1;

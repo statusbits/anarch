@@ -8,6 +8,9 @@
 #include <errno.h>
 #include <minifb.h>
 
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
 // Game configuration settings
 #define SFG_SCREEN_RESOLUTION_X 240
 #define SFG_SCREEN_RESOLUTION_Y 192
@@ -20,6 +23,9 @@
 
 // RGB565 frame buffer.
 static uint16_t frame_buffer[SFG_SCREEN_RESOLUTION_X * SFG_SCREEN_RESOLUTION_Y];
+
+// Game start time
+static uint32_t start_time;
 
 // ---------------------------------------------------------------------------
 static inline void SFG_setPixel(uint16_t x, uint16_t y, uint8_t colorIndex)
@@ -41,12 +47,13 @@ void SFG_getMouseOffset(int16_t *x, int16_t *y)
 // ---------------------------------------------------------------------------
 uint32_t SFG_getTimeMs(void)
 {
-    return 0;
+    return GetTickCount() - start_time;
 }
 
 // ---------------------------------------------------------------------------
 void SFG_sleepMs(uint16_t gameTimeMs)
 {
+    //usleep(1000 * gameTimeMs);
 }
 
 // ---------------------------------------------------------------------------
@@ -84,6 +91,9 @@ int main(int argc, char **argv)
         // Error: cannot create display window
         return 1;
     }
+
+    // Capture game start time
+    start_time = GetTickCount();
 
     // Initialize game
     SFG_init();
