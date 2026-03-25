@@ -24,9 +24,6 @@
 // RGB565 frame buffer.
 static uint16_t frame_buffer[SFG_SCREEN_RESOLUTION_X * SFG_SCREEN_RESOLUTION_Y];
 
-// Game start time
-static uint32_t start_time;
-
 // ---------------------------------------------------------------------------
 static inline void SFG_setPixel(uint16_t x, uint16_t y, uint8_t colorIndex)
 {
@@ -36,7 +33,34 @@ static inline void SFG_setPixel(uint16_t x, uint16_t y, uint8_t colorIndex)
 // ---------------------------------------------------------------------------
 int8_t SFG_keyPressed(uint8_t key)
 {
-    return 0;
+    static uint8_t const keymap[SFG_KEY_COUNT] = {
+        26,     //  0 - SFG_KEY_UP                              [Up]
+        27,     //  1 - SFG_KEY_RIGHT                           [Right]
+        28,     //  2 - SFG_KEY_DOWN                            [Down]
+        25,     //  3 - SFG_KEY_LEFT                            [Left]
+        'X',    //  4 - SFG_KEY_A (fire, confirm)               [X]
+        'Z',    //  5 - SFG_KEY_B (cancel, strafe, look up/down) [Z]
+        0x08,   //  6 - SFG_KEY_C (menu, jump, switch weapons)  [Backspace]
+        0x20,   //  7 - SFG_KEY_JUMP                            [Space]
+            //  8 - SFG_KEY_STRAFE_LEFT
+            //  9 - SFG_KEY_STRAFE_RIGHT
+            // 10 - SFG_KEY_MAP
+            // 11 - SFG_KEY_TOGGLE_FREELOOK
+            // 12 - SFG_KEY_NEXT_WEAPON
+            // 13 - SFG_KEY_PREVIOUS_WEAPON
+            // 14 - SFG_KEY_MENU
+            // 1S - 5FG_KEY_CYCLE_WEAPON
+    };
+
+    char * key_status;
+
+    if (key >= SFG_KEY_COUNT) {
+        return 0;
+    }
+
+    key_status = mfb_keystatus();
+
+    return key_status[keymap[key]];
 }
 
 // ---------------------------------------------------------------------------
@@ -47,13 +71,13 @@ void SFG_getMouseOffset(int16_t *x, int16_t *y)
 // ---------------------------------------------------------------------------
 uint32_t SFG_getTimeMs(void)
 {
-    return GetTickCount() - start_time;
+    return GetTickCount();
 }
 
 // ---------------------------------------------------------------------------
 void SFG_sleepMs(uint16_t gameTimeMs)
 {
-    //usleep(1000 * gameTimeMs);
+    Sleep(gameTimeMs);
 }
 
 // ---------------------------------------------------------------------------
@@ -91,9 +115,6 @@ int main(int argc, char **argv)
         // Error: cannot create display window
         return 1;
     }
-
-    // Capture game start time
-    start_time = GetTickCount();
 
     // Initialize game
     SFG_init();
