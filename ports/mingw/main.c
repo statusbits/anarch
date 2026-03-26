@@ -34,22 +34,22 @@ static inline void SFG_setPixel(uint16_t x, uint16_t y, uint8_t colorIndex)
 int8_t SFG_keyPressed(uint8_t key)
 {
     static uint8_t const keymap[SFG_KEY_COUNT] = {
-        26,     //  0 - SFG_KEY_UP                              [Up]
-        27,     //  1 - SFG_KEY_RIGHT                           [Right]
-        28,     //  2 - SFG_KEY_DOWN                            [Down]
-        25,     //  3 - SFG_KEY_LEFT                            [Left]
+        0x26,   //  0 - SFG_KEY_UP                              [Up]
+        0x27,   //  1 - SFG_KEY_RIGHT                           [Right]
+        0x28,   //  2 - SFG_KEY_DOWN                            [Down]
+        0x25,   //  3 - SFG_KEY_LEFT                            [Left]
         'X',    //  4 - SFG_KEY_A (fire, confirm)               [X]
-        'Z',    //  5 - SFG_KEY_B (cancel, strafe, look up/down) [Z]
-        0x08,   //  6 - SFG_KEY_C (menu, jump, switch weapons)  [Backspace]
+        0x08,   //  5 - SFG_KEY_B (cancel)                      [Backspace]
+        'V',    //  6 - SFG_KEY_C                               [V]
         0x20,   //  7 - SFG_KEY_JUMP                            [Space]
-            //  8 - SFG_KEY_STRAFE_LEFT
-            //  9 - SFG_KEY_STRAFE_RIGHT
-            // 10 - SFG_KEY_MAP
-            // 11 - SFG_KEY_TOGGLE_FREELOOK
-            // 12 - SFG_KEY_NEXT_WEAPON
-            // 13 - SFG_KEY_PREVIOUS_WEAPON
-            // 14 - SFG_KEY_MENU
-            // 1S - 5FG_KEY_CYCLE_WEAPON
+        'Z',    //  8 - SFG_KEY_STRAFE_LEFT                     [Z]
+        'C',    //  9 - SFG_KEY_STRAFE_RIGHT                    [C]
+        0x09,   // 10 - SFG_KEY_MAP                             [Tab]
+        'F',    // 11 - SFG_KEY_TOGGLE_FREELOOK                 [F]
+        'D',    // 12 - SFG_KEY_NEXT_WEAPON                     [D]
+        'A',    // 13 - SFG_KEY_PREVIOUS_WEAPON                 [A]
+        0x0D,   // 14 - SFG_KEY_MENU                            [Enter]
+        'S',    // 1S - 5FG_KEY_CYCLE_WEAPON                    [S]
     };
 
     char * key_status;
