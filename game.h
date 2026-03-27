@@ -4473,7 +4473,7 @@ void SFG_drawMenu(void)
     (SFG_TEXTURE_SIZE / 2) * SFG_FONT_SIZE_SMALL,y,SFG_FONT_SIZE_SMALL);
 
 #if SFG_GAME_RESOLUTION_Y > 50
-  y += 32 * SFG_FONT_SIZE_MEDIUM + SFG_characterSize(SFG_FONT_SIZE_MEDIUM);
+  y += 36 * SFG_FONT_SIZE_MEDIUM + SFG_characterSize(SFG_FONT_SIZE_MEDIUM);
 #else
   y = 2;
 #endif

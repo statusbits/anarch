@@ -40,8 +40,8 @@
     // higher quality
     #define SFG_FPS 60
     #define SFG_LOG(str) puts(str);
-    #define SFG_SCREEN_RESOLUTION_X 700
-    #define SFG_SCREEN_RESOLUTION_Y 512
+    #define SFG_SCREEN_RESOLUTION_X 800
+    #define SFG_SCREEN_RESOLUTION_Y 600
     #define SFG_DITHERED_SHADOW 1
     #define SFG_DIMINISH_SPRITES 1
     #define SFG_HEADBOB_SHEAR (-1 * SFG_SCREEN_RESOLUTION_Y / 80)
